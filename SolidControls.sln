@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{9D55260A-0D27-4599-BF80-C6E8917C7CED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolidControls", "SolidControls\SolidControls.csproj", "{B9A084F7-1DF8-406A-85E6-165754B3D603}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9D55260A-0D27-4599-BF80-C6E8917C7CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D55260A-0D27-4599-BF80-C6E8917C7CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D55260A-0D27-4599-BF80-C6E8917C7CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D55260A-0D27-4599-BF80-C6E8917C7CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9A084F7-1DF8-406A-85E6-165754B3D603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9A084F7-1DF8-406A-85E6-165754B3D603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9A084F7-1DF8-406A-85E6-165754B3D603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9A084F7-1DF8-406A-85E6-165754B3D603}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D951A3B2-B503-4D13-985D-50FFBA885999}
+	EndGlobalSection
+EndGlobal
