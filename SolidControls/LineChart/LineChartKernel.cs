@@ -62,7 +62,7 @@ namespace SolidControls
         }
 
         public static readonly DependencyProperty PointsProperty =
-            DependencyProperty.Register("Points", typeof(PointCollection), typeof(LineChartKernel),
+            DependencyProperty.Register(nameof(Points), typeof(PointCollection), typeof(LineChartKernel),
                 new UIPropertyMetadata(null, (d, e) => (d as LineChartKernel).InvalidatePoints()));
 
         #endregion
@@ -76,7 +76,7 @@ namespace SolidControls
         }
 
         public static readonly DependencyProperty MinXProperty =
-            DependencyProperty.Register("MinX", typeof(double), typeof(LineChartKernel),
+            DependencyProperty.Register(nameof(MinX), typeof(double), typeof(LineChartKernel),
                 new UIPropertyMetadata(0.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix()));
 
         #endregion
@@ -90,7 +90,7 @@ namespace SolidControls
         }
 
         public static readonly DependencyProperty MaxXProperty =
-            DependencyProperty.Register("MaxX", typeof(double), typeof(LineChartKernel),
+            DependencyProperty.Register(nameof(MaxX), typeof(double), typeof(LineChartKernel),
                 new UIPropertyMetadata(100.0,
                     (d, e) => (d as LineChartKernel).InvalidateTransformMatrix()));
 
@@ -105,7 +105,7 @@ namespace SolidControls
         }
 
         public static readonly DependencyProperty MinYProperty =
-            DependencyProperty.Register("MinY", typeof(double), typeof(LineChartKernel),
+            DependencyProperty.Register(nameof(MinY), typeof(double), typeof(LineChartKernel),
                 new UIPropertyMetadata(0.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix()));
 
         #endregion
@@ -119,7 +119,7 @@ namespace SolidControls
         }
 
         public static readonly DependencyProperty MaxYProperty =
-            DependencyProperty.Register("MaxY", typeof(double), typeof(LineChartKernel),
+            DependencyProperty.Register(nameof(MaxY), typeof(double), typeof(LineChartKernel),
                 new UIPropertyMetadata(100.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix()));
 
         #endregion
@@ -133,7 +133,7 @@ namespace SolidControls
         }
 
         public static readonly DependencyProperty AutoResetZoomXProperty =
-            DependencyProperty.Register("AutoResetZoomX", typeof(bool), typeof(LineChartKernel),
+            DependencyProperty.Register(nameof(AutoResetZoomX), typeof(bool), typeof(LineChartKernel),
                 new UIPropertyMetadata(true, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix(true)));
 
         #endregion
@@ -147,7 +147,7 @@ namespace SolidControls
         }
 
         public static readonly DependencyProperty AutoResetZoomYProperty =
-            DependencyProperty.Register("AutoResetZoomY", typeof(bool), typeof(LineChartKernel),
+            DependencyProperty.Register(nameof(AutoResetZoomY), typeof(bool), typeof(LineChartKernel),
                 new UIPropertyMetadata(true, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix(true)));
 
         #endregion

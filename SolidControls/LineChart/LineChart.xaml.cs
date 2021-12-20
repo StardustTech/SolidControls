@@ -25,7 +25,7 @@ namespace SolidControls
         #region Title : string
 
         public static readonly DependencyProperty TitleProperty =
-            DependencyProperty.Register("Title", typeof(string), typeof(LineChart), new UIPropertyMetadata(String.Empty));
+            DependencyProperty.Register(nameof(Title), typeof(string), typeof(LineChart), new UIPropertyMetadata(String.Empty));
 
         public string Title
         {
@@ -38,7 +38,7 @@ namespace SolidControls
         #region HorizontalAxisTitle : string
 
         public static readonly DependencyProperty HorizontalAxisTitleProperty =
-            DependencyProperty.Register("HorizontalAxisTitle", typeof(string), typeof(LineChart), new UIPropertyMetadata(String.Empty));
+            DependencyProperty.Register(nameof(HorizontalAxisTitle), typeof(string), typeof(LineChart), new UIPropertyMetadata(String.Empty));
 
         public string HorizontalAxisTitle
         {
@@ -51,7 +51,7 @@ namespace SolidControls
         #region VerticalAxisTitle : string
 
         public static readonly DependencyProperty VerticalAxisTitleProperty =
-            DependencyProperty.Register("VerticalAxisTitle", typeof(string), typeof(LineChart), new UIPropertyMetadata(String.Empty));
+            DependencyProperty.Register(nameof(VerticalAxisTitle), typeof(string), typeof(LineChart), new UIPropertyMetadata(String.Empty));
 
         public string VerticalAxisTitle
         {
@@ -64,7 +64,7 @@ namespace SolidControls
         #region HorizontalAxisTicksAmount : int
 
         public static readonly DependencyProperty HorizontalAxisTicksAmountProperty =
-            DependencyProperty.Register("HorizontalAxisTicksAmount", typeof(int), typeof(LineChart), new UIPropertyMetadata(10));
+            DependencyProperty.Register(nameof(HorizontalAxisTicksAmount), typeof(int), typeof(LineChart), new UIPropertyMetadata(10));
 
         public int HorizontalAxisTicksAmount
         {
@@ -77,7 +77,7 @@ namespace SolidControls
         #region VerticalAxisTicksAmount : int
 
         public static readonly DependencyProperty VerticalAxisTicksAmountProperty =
-            DependencyProperty.Register("VerticalAxisTicksAmount", typeof(int), typeof(LineChart), new UIPropertyMetadata(10));
+            DependencyProperty.Register(nameof(VerticalAxisTicksAmount), typeof(int), typeof(LineChart), new UIPropertyMetadata(10));
 
         public int VerticalAxisTicksAmount
         {
@@ -90,7 +90,7 @@ namespace SolidControls
         #region HorizontalAxisTickStringFormat : string
 
         public static readonly DependencyProperty HorizontalAxisTickStringFormatProperty =
-            DependencyProperty.Register("HorizontalAxisTickStringFormat", typeof(string), typeof(LineChart), new PropertyMetadata("{0}"));
+            DependencyProperty.Register(nameof(HorizontalAxisTickStringFormat), typeof(string), typeof(LineChart), new PropertyMetadata("{0}"));
 
         public string HorizontalAxisTickStringFormat
         {
@@ -103,7 +103,7 @@ namespace SolidControls
         #region VerticalAxisTickStringFormat : string
 
         public static readonly DependencyProperty VerticalAxisTickStringFormatProperty =
-            DependencyProperty.Register("VerticalAxisTickStringFormat", typeof(string), typeof(LineChart), new PropertyMetadata("{0}"));
+            DependencyProperty.Register(nameof(VerticalAxisTickStringFormat), typeof(string), typeof(LineChart), new PropertyMetadata("{0}"));
 
         public string VerticalAxisTickStringFormat
         {
@@ -155,7 +155,7 @@ namespace SolidControls
         #region StrokeColor : Color
 
         public static readonly DependencyProperty StrokeColorProperty =
-            DependencyProperty.Register("StrokeColor", typeof(Color), typeof(LineChart), new PropertyMetadata(Colors.Green));
+            DependencyProperty.Register(nameof(StrokeColor), typeof(Color), typeof(LineChart), new PropertyMetadata(Colors.Green));
 
         public Color StrokeColor
         {

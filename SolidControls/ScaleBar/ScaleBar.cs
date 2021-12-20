@@ -179,7 +179,7 @@ namespace SolidControls
         #region TicksAmount : int
 
         public static readonly DependencyProperty TicksAmountProperty =
-            DependencyProperty.Register("TicksAmount", typeof(int), typeof(ScaleBar),
+            DependencyProperty.Register(nameof(TicksAmount), typeof(int), typeof(ScaleBar),
                 new PropertyMetadata(2,
                     (d, e) => (d as ScaleBar).OnTicksAmountPropertyChanged(),
                     (d, v) => (int)v >= 2 ? v : 2));
@@ -202,7 +202,7 @@ namespace SolidControls
         #region TickStringFormat : string
 
         public static readonly DependencyProperty TickStringFormatProperty =
-            DependencyProperty.Register("TickStringFormat", typeof(string), typeof(ScaleBar),
+            DependencyProperty.Register(nameof(TickStringFormat), typeof(string), typeof(ScaleBar),
                 new PropertyMetadata("{0}", (d, e) => (d as ScaleBar).InvalidateVisual()));
 
         public string TickStringFormat
@@ -216,7 +216,7 @@ namespace SolidControls
         #region TickStringVisible : bool
 
         public static readonly DependencyProperty TickStringVisibleProperty =
-            DependencyProperty.Register("TickStringVisible", typeof(bool), typeof(ScaleBar),
+            DependencyProperty.Register(nameof(TickStringVisible), typeof(bool), typeof(ScaleBar),
                 new PropertyMetadata(true, (d, e) => (d as ScaleBar).InvalidateVisual()));
 
         public bool TickStringVisible
@@ -230,7 +230,7 @@ namespace SolidControls
         #region IsMaximumVisible : bool
 
         internal static readonly DependencyProperty IsMaximumVisibleProperty =
-            DependencyProperty.Register("IsMaximumVisible", typeof(bool), typeof(ScaleBar),
+            DependencyProperty.Register(nameof(IsMaximumVisible), typeof(bool), typeof(ScaleBar),
                 new PropertyMetadata(true, (d, e) => (d as ScaleBar).InvalidateVisual()));
 
         internal bool IsMaximumVisible
@@ -244,7 +244,7 @@ namespace SolidControls
         #region IsMinimumVisible : bool
 
         internal static readonly DependencyProperty IsMinimumVisibleProperty =
-            DependencyProperty.Register("IsMinimumVisible", typeof(bool), typeof(ScaleBar),
+            DependencyProperty.Register(nameof(IsMinimumVisible), typeof(bool), typeof(ScaleBar),
                 new PropertyMetadata(true, (d, e) => (d as ScaleBar).InvalidateVisual()));
 
         internal bool IsMinimumVisible

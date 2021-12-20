@@ -10,7 +10,7 @@ namespace SolidControls
         #region Value : double
 
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(double), typeof(LineChartSlider),
+            DependencyProperty.Register(nameof(Value), typeof(double), typeof(LineChartSlider),
                 new PropertyMetadata(0.0, (d, e) => (d as LineChartSlider).OnValuePropertyChanged()));
 
         public double Value
@@ -26,7 +26,7 @@ namespace SolidControls
         #region Color : Color
 
         public static readonly DependencyProperty ColorProperty =
-            DependencyProperty.Register("Color", typeof(Color), typeof(LineChartSlider));
+            DependencyProperty.Register(nameof(Color), typeof(Color), typeof(LineChartSlider));
 
         public Color Color
         {
@@ -39,7 +39,7 @@ namespace SolidControls
         #region IsReadOnly : bool
 
         public static readonly DependencyProperty IsReadOnlyProperty =
-            DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(LineChartSlider));
+            DependencyProperty.Register(nameof(IsReadOnly), typeof(bool), typeof(LineChartSlider));
 
         public bool IsReadOnly
         {
@@ -59,7 +59,7 @@ namespace SolidControls
         #region EndValue : double
 
         public static readonly DependencyProperty EndValueProperty =
-            DependencyProperty.Register("EndValue", typeof(double), typeof(LineChartRangeSlider),
+            DependencyProperty.Register(nameof(EndValue), typeof(double), typeof(LineChartRangeSlider),
                 new PropertyMetadata(0.0, (d, e) => (d as LineChartRangeSlider).OnEndValuePropertyChanged()));
 
         public double EndValue
@@ -78,7 +78,7 @@ namespace SolidControls
         #region RangeLength : double
 
         public static readonly DependencyProperty RangeLengthProperty =
-            DependencyProperty.Register("RangeLength", typeof(double), typeof(LineChartRangeSlider));
+            DependencyProperty.Register(nameof(RangeLength), typeof(double), typeof(LineChartRangeSlider));
 
         public double RangeLength
         {

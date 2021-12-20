@@ -21,9 +21,9 @@ namespace SolidControls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(EditableScaleBar), new FrameworkPropertyMetadata(typeof(EditableScaleBar)));
         }
 
-        public const string PART_MaximumEditTextBox = "PART_MaximumEditTextBox";
-        public const string PART_MinimumEditTextBox = "PART_MinimumEditTextBox";
-        public const string PART_ScaleBar = "PART_ScaleBar";
+        public const string PART_MaximumEditTextBox = nameof(PART_MaximumEditTextBox);
+        public const string PART_MinimumEditTextBox = nameof(PART_MinimumEditTextBox);
+        public const string PART_ScaleBar = nameof(PART_ScaleBar);
 
         private TextBox _maximumEditTextBox;
         private TextBox _minimumEditTextBox;
@@ -72,7 +72,7 @@ namespace SolidControls
             _maximumEditTextBox.SetBinding(TextBox.TextProperty, new Binding()
             {
                 Source = this,
-                Path = new PropertyPath("Maximum"),
+                Path = new PropertyPath(nameof(Maximum)),
                 StringFormat = TickStringFormat,
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateScaleTrigger,
@@ -81,7 +81,7 @@ namespace SolidControls
             _minimumEditTextBox.SetBinding(TextBox.TextProperty, new Binding()
             {
                 Source = this,
-                Path = new PropertyPath("Minimum"),
+                Path = new PropertyPath(nameof(Minimum)),
                 StringFormat = TickStringFormat,
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateScaleTrigger,
@@ -242,7 +242,7 @@ namespace SolidControls
         #region IsMaximumEditable : bool
 
         public static readonly DependencyProperty IsMaximumEditableProperty =
-            DependencyProperty.Register("IsMaximumEditable", typeof(bool), typeof(EditableScaleBar),
+            DependencyProperty.Register(nameof(IsMaximumEditable), typeof(bool), typeof(EditableScaleBar),
                 new PropertyMetadata(true, (d, e) => (d as EditableScaleBar).InvalidateVisual()));
 
         public bool IsMaximumEditable
@@ -256,7 +256,7 @@ namespace SolidControls
         #region IsMinimumEditable : bool
 
         public static readonly DependencyProperty IsMinimumEditableProperty =
-            DependencyProperty.Register("IsMinimumEditable", typeof(bool), typeof(EditableScaleBar),
+            DependencyProperty.Register(nameof(IsMinimumEditable), typeof(bool), typeof(EditableScaleBar),
                 new PropertyMetadata(true, (d, e) => (d as EditableScaleBar).InvalidateVisual()));
 
         public bool IsMinimumEditable
@@ -270,7 +270,7 @@ namespace SolidControls
         #region UpdateScaleTrigger : UpdateSourceTrigger
 
         public static readonly DependencyProperty UpdateScaleTriggerProperty =
-            DependencyProperty.Register("UpdateScaleTrigger", typeof(UpdateSourceTrigger), typeof(EditableScaleBar),
+            DependencyProperty.Register(nameof(UpdateScaleTrigger), typeof(UpdateSourceTrigger), typeof(EditableScaleBar),
                 new PropertyMetadata(UpdateSourceTrigger.PropertyChanged, (d, e) => (d as EditableScaleBar).UpdateTextBoxBindings()));
 
         public UpdateSourceTrigger UpdateScaleTrigger
