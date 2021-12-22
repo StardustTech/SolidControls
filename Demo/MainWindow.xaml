@@ -5,11 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SolidControls.Demo"
         xmlns:controls="clr-namespace:SolidControls;assembly=SolidControls"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type local:MainViewModel}}"
+        Title="MainWindow" Height="450" Width="800" DataContext="{x:Static local:MainViewModel.Instance}">
     <Grid>
-        <controls:LineChart>
-            
+        <controls:LineChart Title="Demo" Background="#101010" Foreground="White"
+                            TextElement.FontSize="12" TextElement.FontFamily="Consolas"
+                            HorizontalAxisTitle="X Axis" VerticalAxisTitle="Y Axis"
+                            HorizontalAxisTicksAmount="5" VerticalAxisTicksAmount="5"
+                            HorizontalAxisTickStringFormat="{}{0:0}" VerticalAxisTickStringFormat="{}{0:0}"
+                            Points="{Binding Values, Converter={x:Static controls:ValueCollectionToPointCollectionConverter.Instance}}">
+            <controls:LineChart.XSliders>
+                <controls:LineChartRangeSlider Color="Red" Value="30" EndValue="50" />
+                <controls:LineChartRangeSlider Color="Yellow" Value="60" EndValue="80" />
+            </controls:LineChart.XSliders>
         </controls:LineChart>
     </Grid>
 </Window>
