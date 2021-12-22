@@ -3,15 +3,19 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace SolidControls {
+namespace SolidControls
+{
     [ValueConversion(typeof(object), typeof(Visibility))]
-    public class IsNullToVisibilityConverter : IValueConverter {
+    public class IsNullToVisibilityConverter : IValueConverter
+    {
         private static readonly Lazy<IsNullToVisibilityConverter> _instance = new Lazy<IsNullToVisibilityConverter>();
         public static IValueConverter Instance { get { return _instance.Value; } }
 
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
             var mode = (IsNullToVisibilityConvertMode)parameter;
-            switch (mode) {
+            switch (mode)
+            {
                 case IsNullToVisibilityConvertMode.NullToCollapsed:
                     return value == null ? Visibility.Collapsed : Visibility.Visible;
                 case IsNullToVisibilityConvertMode.NullToHidden:
@@ -25,12 +29,14 @@ namespace SolidControls {
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
             throw new NotImplementedException();
         }
     }
 
-    public enum IsNullToVisibilityConvertMode {
+    public enum IsNullToVisibilityConvertMode
+    {
         NullToCollapsed, NullToHidden, NotNullToCollapsed, NotNullToHidden,
     }
 }
