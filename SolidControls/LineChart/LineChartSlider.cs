@@ -19,19 +19,28 @@ namespace SolidControls
             set { SetValue(ValueProperty, value); }
         }
 
-        protected virtual void OnValuePropertyChanged() { }
+        protected virtual void OnValuePropertyChanged()
+        {
+            RaiseSliderUpdated();
+        }
 
         #endregion
 
         #region Color : Color
 
         public static readonly DependencyProperty ColorProperty =
-            DependencyProperty.Register(nameof(Color), typeof(Color), typeof(LineChartSlider));
+            DependencyProperty.Register(nameof(Color), typeof(Color), typeof(LineChartSlider),
+                new PropertyMetadata(Colors.Yellow, (d, e) => (d as LineChartSlider).OnColorPropertyChanged()));
 
         public Color Color
         {
             get { return (Color)GetValue(ColorProperty); }
             set { SetValue(ColorProperty, value); }
+        }
+
+        protected virtual void OnColorPropertyChanged()
+        {
+            RaiseSliderUpdated();
         }
 
         #endregion
@@ -50,6 +59,22 @@ namespace SolidControls
         #endregion
 
         #endregion
+
+        public static readonly RoutedEvent SliderUpdatedEvent =
+            EventManager.RegisterRoutedEvent(
+                nameof(SliderUpdated), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(LineChartSlider));
+
+        public event RoutedEventHandler SliderUpdated
+        {
+            add { AddHandler(SliderUpdatedEvent, value); }
+            remove { RemoveHandler(SliderUpdatedEvent, value); }
+        }
+
+        protected void RaiseSliderUpdated()
+        {
+            var eventArgs = new RoutedEventArgs(SliderUpdatedEvent);
+            RaiseEvent(eventArgs);
+        }
     }
 
     public class LineChartRangeSlider : LineChartSlider
@@ -71,6 +96,7 @@ namespace SolidControls
         protected virtual void OnEndValuePropertyChanged()
         {
             RangeLength = EndValue - Value;
+            RaiseSliderUpdated();
         }
 
         #endregion
@@ -78,12 +104,18 @@ namespace SolidControls
         #region RangeLength : double
 
         public static readonly DependencyProperty RangeLengthProperty =
-            DependencyProperty.Register(nameof(RangeLength), typeof(double), typeof(LineChartRangeSlider));
+            DependencyProperty.Register(nameof(RangeLength), typeof(double), typeof(LineChartRangeSlider),
+                new PropertyMetadata(0.0, (d, e) => (d as LineChartRangeSlider).OnRangeLengthPropertyChanged()));
 
         public double RangeLength
         {
             get { return (double)GetValue(RangeLengthProperty); }
             private set { SetValue(RangeLengthProperty, value); }
+        }
+
+        protected virtual void OnRangeLengthPropertyChanged()
+        {
+            RaiseSliderUpdated();
         }
 
         #endregion
@@ -95,6 +127,7 @@ namespace SolidControls
         protected override void OnValuePropertyChanged()
         {
             RangeLength = EndValue - Value;
+            base.OnValuePropertyChanged();
         }
 
         #endregion

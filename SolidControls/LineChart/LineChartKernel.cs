@@ -49,6 +49,9 @@ namespace SolidControls
         {
             _xSliders = new UIElementCollection(this, this);
             _ySliders = new UIElementCollection(this, this);
+
+            var sliderUpdatedEvent = LineChartSlider.SliderUpdatedEvent.AddOwner(typeof(LineChartKernel));
+            AddHandler(sliderUpdatedEvent, new RoutedEventHandler((s, e) => InvalidateVisual()));
         }
 
         #region DependencyProperties
