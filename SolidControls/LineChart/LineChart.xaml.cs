@@ -113,19 +113,6 @@ namespace SolidControls
 
         #endregion
 
-        #region Points : PointCollection
-
-        public static readonly DependencyProperty PointsProperty =
-            LineChartKernel.PointsProperty.AddOwner(typeof(LineChart));
-
-        public PointCollection Points
-        {
-            get { return (PointCollection)GetValue(PointsProperty); }
-            set { SetValue(PointsProperty, value); }
-        }
-
-        #endregion
-
         #region AutoResetHorizontalAxis : bool
 
         public static readonly DependencyProperty AutoResetHorizontalAxisProperty =
@@ -148,6 +135,87 @@ namespace SolidControls
         {
             get { return (bool)GetValue(AutoResetVerticalAxisProperty); }
             set { SetValue(AutoResetVerticalAxisProperty, value); }
+        }
+
+        #endregion
+
+        #region DataBorders
+
+        #region MinimumX : double
+
+        public static readonly DependencyProperty MinimumXProperty =
+            LineChartKernel.MinXProperty.AddOwner(typeof(LineChart), new PropertyMetadata(0.0,
+                (d, e) => (d as LineChart).OnMinimumXPropertyChanged((double)e.OldValue, (double)e.NewValue),
+                (d, v) => (d as LineChart).MinimumXPropertyValueCoerce((double)v)));
+
+        protected virtual void OnMinimumXPropertyChanged(double oldValue, double newValue) { }
+
+        protected virtual double MinimumXPropertyValueCoerce(double newValue)
+        {
+            return newValue;
+        }
+
+        #endregion
+
+        #region MaximumX : double
+
+        public static readonly DependencyProperty MaximumXProperty =
+            LineChartKernel.MaxXProperty.AddOwner(typeof(LineChart), new PropertyMetadata(100.0,
+                (d, e) => (d as LineChart).OnMaximumXPropertyChanged((double)e.OldValue, (double)e.NewValue),
+                (d, v) => (d as LineChart).MaximumXPropertyValueCoerce((double)v)));
+
+        protected virtual void OnMaximumXPropertyChanged(double oldValue, double newValue) { }
+
+        protected virtual double MaximumXPropertyValueCoerce(double newValue)
+        {
+            return newValue;
+        }
+
+        #endregion
+
+        #region MinimumY : double
+
+        public static readonly DependencyProperty MinimumYProperty =
+            LineChartKernel.MinYProperty.AddOwner(typeof(LineChart), new PropertyMetadata(0.0,
+                (d, e) => (d as LineChart).OnMinimumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
+                (d, v) => (d as LineChart).MinimumYPropertyValueCoerce((double)v)));
+
+        protected virtual void OnMinimumYPropertyChanged(double oldValue, double newValue) { }
+
+        protected virtual double MinimumYPropertyValueCoerce(double newValue)
+        {
+            return newValue;
+        }
+
+        #endregion
+
+        #region MaximumY : double
+
+        public static readonly DependencyProperty MaximumYProperty =
+            LineChartKernel.MaxYProperty.AddOwner(typeof(LineChart), new PropertyMetadata(100.0,
+                (d, e) => (d as LineChart).OnMaximumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
+                (d, v) => (d as LineChart).MaximumYPropertyValueCoerce((double)v)));
+
+        protected virtual void OnMaximumYPropertyChanged(double oldValue, double newValue) { }
+
+        protected virtual double MaximumYPropertyValueCoerce(double newValue)
+        {
+            return newValue;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region Points : PointCollection
+
+        public static readonly DependencyProperty PointsProperty =
+            LineChartKernel.PointsProperty.AddOwner(typeof(LineChart));
+
+        public PointCollection Points
+        {
+            get { return (PointCollection)GetValue(PointsProperty); }
+            set { SetValue(PointsProperty, value); }
         }
 
         #endregion
