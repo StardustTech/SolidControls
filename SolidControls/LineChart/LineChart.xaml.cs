@@ -152,7 +152,18 @@ namespace SolidControls
 
         protected virtual double MinimumXPropertyValueCoerce(double newValue)
         {
+            if (newValue > MaximumX)
+            {
+                MaximumX = newValue;
+            }
+
             return newValue;
+        }
+
+        public double MinimumX
+        {
+            get { return (double)GetValue(MinimumXProperty); }
+            set { SetValue(MinimumXProperty, value); }
         }
 
         #endregion
@@ -168,7 +179,18 @@ namespace SolidControls
 
         protected virtual double MaximumXPropertyValueCoerce(double newValue)
         {
+            if (newValue < MinimumX)
+            {
+                MinimumX = newValue;
+            }
+
             return newValue;
+        }
+
+        public double MaximumX
+        {
+            get { return (double)GetValue(MaximumXProperty); }
+            set { SetValue(MaximumXProperty, value); }
         }
 
         #endregion
@@ -184,7 +206,18 @@ namespace SolidControls
 
         protected virtual double MinimumYPropertyValueCoerce(double newValue)
         {
+            if (newValue > MaximumY)
+            {
+                MaximumY = newValue;
+            }
+
             return newValue;
+        }
+
+        public double MinimumY
+        {
+            get { return (double)GetValue(MinimumYProperty); }
+            set { SetValue(MinimumYProperty, value); }
         }
 
         #endregion
@@ -200,7 +233,18 @@ namespace SolidControls
 
         protected virtual double MaximumYPropertyValueCoerce(double newValue)
         {
+            if (newValue < MinimumY)
+            {
+                MinimumY = newValue;
+            }
+
             return newValue;
+        }
+
+        public double MaximumY
+        {
+            get { return (double)GetValue(MaximumYProperty); }
+            set { SetValue(MaximumYProperty, value); }
         }
 
         #endregion

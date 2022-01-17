@@ -46,7 +46,11 @@
 
                 <local:LineChartKernel x:Name="chartKernel" Points="{Binding ElementName=lineChart, Path=Points}"
                                        AutoResetZoomX="{Binding ElementName=lineChart, Path=AutoResetHorizontalAxis}"
-                                       AutoResetZoomY="{Binding ElementName=lineChart, Path=AutoResetVerticalAxis}">
+                                       AutoResetZoomY="{Binding ElementName=lineChart, Path=AutoResetVerticalAxis}"
+                                       MinX="{Binding ElementName=lineChart, Path=MinimumX}"
+                                       MaxX="{Binding ElementName=lineChart, Path=MaximumX}"
+                                       MinY="{Binding ElementName=lineChart, Path=MinimumY}"
+                                       MaxY="{Binding ElementName=lineChart, Path=MaximumY}">
                     <local:LineChartKernel.Stroke>
                         <SolidColorBrush Color="{Binding ElementName=lineChart, Path=StrokeColor}" />
                     </local:LineChartKernel.Stroke>
@@ -60,16 +64,16 @@
             </TextBlock>
             <local:EditableScaleBar x:Name="verticalAxisScaleBar" Grid.Row="0" Grid.Column="1" Placement="Left" Width="5" HorizontalAlignment="Right"
                                     Fill="{Binding ElementName=lineChart, Path=Foreground}" UpdateScaleTrigger="PropertyChanged"
-                                    Minimum="{Binding ElementName=chartKernel, Path=MinY, Mode=TwoWay}"
-                                    Maximum="{Binding ElementName=chartKernel, Path=MaxY, Mode=TwoWay}"
+                                    Minimum="{Binding ElementName=lineChart, Path=MinimumY, Mode=TwoWay}"
+                                    Maximum="{Binding ElementName=lineChart, Path=MaximumY, Mode=TwoWay}"
                                     TickStringFormat="{Binding ElementName=lineChart, Path=VerticalAxisTickStringFormat}"
                                     TicksAmount="{Binding ElementName=lineChart, Path=VerticalAxisTicksAmount}" />
 
             <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding ElementName=lineChart, Path=HorizontalAxisTitle}" HorizontalAlignment="Center" />
             <local:EditableScaleBar x:Name="horizontalAxisScaleBar" Grid.Row="1" Grid.Column="2" Placement="Bottom" Height="5" VerticalAlignment="Top"
                                     Fill="{Binding ElementName=lineChart, Path=Foreground}" UpdateScaleTrigger="PropertyChanged"
-                                    Minimum="{Binding ElementName=chartKernel, Path=MinX, Mode=TwoWay}"
-                                    Maximum="{Binding ElementName=chartKernel, Path=MaxX, Mode=TwoWay}"
+                                    Minimum="{Binding ElementName=lineChart, Path=MinimumX, Mode=TwoWay}"
+                                    Maximum="{Binding ElementName=lineChart, Path=MaximumX, Mode=TwoWay}"
                                     TickStringFormat="{Binding ElementName=lineChart, Path=HorizontalAxisTickStringFormat}"
                                     TicksAmount="{Binding ElementName=lineChart, Path=HorizontalAxisTicksAmount}" />
         </Grid>

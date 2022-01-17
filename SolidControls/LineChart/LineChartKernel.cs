@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -80,7 +81,11 @@ namespace SolidControls
 
         public static readonly DependencyProperty MinXProperty =
             DependencyProperty.Register(nameof(MinX), typeof(double), typeof(LineChartKernel),
-                new UIPropertyMetadata(0.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix()));
+                new FrameworkPropertyMetadata(0.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix())
+                {
+                    BindsTwoWayByDefault = true,
+                    DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                });
 
         #endregion
 
@@ -94,8 +99,11 @@ namespace SolidControls
 
         public static readonly DependencyProperty MaxXProperty =
             DependencyProperty.Register(nameof(MaxX), typeof(double), typeof(LineChartKernel),
-                new UIPropertyMetadata(100.0,
-                    (d, e) => (d as LineChartKernel).InvalidateTransformMatrix()));
+                new FrameworkPropertyMetadata(100.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix())
+                {
+                    BindsTwoWayByDefault = true,
+                    DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                });
 
         #endregion
 
@@ -109,7 +117,11 @@ namespace SolidControls
 
         public static readonly DependencyProperty MinYProperty =
             DependencyProperty.Register(nameof(MinY), typeof(double), typeof(LineChartKernel),
-                new UIPropertyMetadata(0.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix()));
+                new FrameworkPropertyMetadata(0.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix())
+                {
+                    BindsTwoWayByDefault = true,
+                    DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                });
 
         #endregion
 
@@ -123,7 +135,11 @@ namespace SolidControls
 
         public static readonly DependencyProperty MaxYProperty =
             DependencyProperty.Register(nameof(MaxY), typeof(double), typeof(LineChartKernel),
-                new UIPropertyMetadata(100.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix()));
+                new FrameworkPropertyMetadata(100.0, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix())
+                {
+                    BindsTwoWayByDefault = true,
+                    DefaultUpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
+                });
 
         #endregion
 
