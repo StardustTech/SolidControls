@@ -145,29 +145,44 @@ namespace SolidControls
 
         #region AutoResetZoomX : bool
 
+        private bool _autoResetZoomX = true;
         public bool AutoResetZoomX
         {
-            get { return (bool)GetValue(AutoResetZoomXProperty); }
-            set { SetValue(AutoResetZoomXProperty, value); }
+            get { return _autoResetZoomX; }
+            set
+            {
+                if (_autoResetZoomX != value)
+                {
+                    _autoResetZoomX = value;
+                    InvalidateTransformMatrix(true);
+                }
+            }
         }
-
-        public static readonly DependencyProperty AutoResetZoomXProperty =
-            DependencyProperty.Register(nameof(AutoResetZoomX), typeof(bool), typeof(LineChartKernel),
-                new UIPropertyMetadata(true, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix(true)));
 
         #endregion
 
         #region AutoResetZoomY : bool
 
+        private bool _autoResetZoomY = true;
         public bool AutoResetZoomY
         {
-            get { return (bool)GetValue(AutoResetZoomYProperty); }
-            set { SetValue(AutoResetZoomYProperty, value); }
+            get { return _autoResetZoomY; }
+            set
+            {
+                if (_autoResetZoomY != value)
+                {
+                    _autoResetZoomY = value;
+                    InvalidateTransformMatrix(true);
+                }
+            }
         }
 
-        public static readonly DependencyProperty AutoResetZoomYProperty =
-            DependencyProperty.Register(nameof(AutoResetZoomY), typeof(bool), typeof(LineChartKernel),
-                new UIPropertyMetadata(true, (d, e) => (d as LineChartKernel).InvalidateTransformMatrix(true)));
+        #endregion
+
+        #region DefaultYBorders : double
+
+        public double DefaultYZoom { get; set; }
+        public double DefaultYCenter { get; set; }
 
         #endregion
 
@@ -326,11 +341,6 @@ namespace SolidControls
             {
                 double newZoomFactorY = _zoomFactorY * (1 + zoomSpeed * Math.Sign(e.Delta));
 
-                if (newZoomFactorY < 1)
-                {
-                    newZoomFactorY = 1;
-                }
-
                 double zoomCenterY = _invertMatrix.Transform(e.GetPosition(this)).Y;
                 double dataRange = _dataMaxY - _dataMinY;
                 double newMinY = zoomCenterY - dataRange * (zoomCenterY - MinY) / newZoomFactorY / (MaxY - MinY);
@@ -338,17 +348,6 @@ namespace SolidControls
 
                 if (newMaxY <= newMinY)
                     return;
-
-                if (newMinY < _dataMinY)
-                {
-                    newMaxY += _dataMinY - newMinY;
-                    newMinY = _dataMinY;
-                }
-                else if (newMaxY > _dataMaxY)
-                {
-                    newMinY -= newMaxY - _dataMaxY;
-                    newMaxY = _dataMaxY;
-                }
 
                 _zoomFactorY = newZoomFactorY;
 
@@ -411,7 +410,8 @@ namespace SolidControls
         {
             base.OnMouseRightButtonDown(e);
 
-            _zoomFactorX = _zoomFactorY = 1;
+            _zoomFactorX = 1;
+            _zoomFactorY = DefaultYZoom;
 
             InvalidateTransformMatrix(true);
         }
@@ -475,7 +475,7 @@ namespace SolidControls
                     MinY = _dataMinY;
                 }
 
-                InvalidateTransformMatrix(Math.Max(_dataMinX, MinX), Math.Min(_dataMaxX, MaxX), Math.Max(_dataMinY, MinY), Math.Min(_dataMaxY, MaxY));
+                InvalidateTransformMatrix(Math.Max(_dataMinX, MinX), Math.Min(_dataMaxX, MaxX), MinY, MaxY);
             }
         }
 
@@ -483,7 +483,20 @@ namespace SolidControls
         {
             if (reset)
             {
-                InvalidateTransformMatrix(_dataMinX, _dataMaxX, _dataMinY, _dataMaxY);
+                double minX = MinX, maxX = MaxX, minY = MinY, maxY = MaxY;
+                if (AutoResetZoomX)
+                {
+                    minX = _dataMinX;
+                    maxX = _dataMaxX;
+                }
+
+                if (AutoResetZoomY)
+                {
+                    minY = _dataMinY;
+                    maxY = _dataMaxY;
+                }
+
+                InvalidateTransformMatrix(minX, maxX, minY, maxY);
             }
             else
             {
@@ -672,7 +685,7 @@ namespace SolidControls
         private Point GetPointOnLine(Point lineStartPoint, Point lineEndPoint, double x)
         {
             if (x < lineStartPoint.X || x > lineEndPoint.X)
-                throw new ArgumentOutOfRangeException("x");
+                throw new ArgumentOutOfRangeException(nameof(x));
 
             if (lineStartPoint.X == lineEndPoint.X)
                 return new Point(x, (lineStartPoint.Y + lineEndPoint.Y) / 2);
@@ -741,18 +754,7 @@ namespace SolidControls
                 double yOffset = dataVector.Y;
 
                 newMinY -= yOffset;
-                if (_dataMinY > newMinY)
-                {
-                    newMaxY += _dataMinY - newMinY;
-                    newMinY = _dataMinY;
-                }
-
                 newMaxY -= yOffset;
-                if (_dataMaxY < newMaxY)
-                {
-                    newMinY -= newMaxY - _dataMaxY;
-                    newMaxY = _dataMaxY;
-                }
             }
 
             InvalidateTransformMatrix(newMinX, newMaxX, newMinY, newMaxY);
@@ -859,17 +861,9 @@ namespace SolidControls
         {
             if (_currentSlider == null)
             {
-                if (_zoomFactorX == 1 && _zoomFactorY == 1)
-                {
-                    Cursor = Cursors.Arrow;
-                }
-                else if (_zoomFactorX == 1)
+                if (_zoomFactorX == 1)
                 {
                     Cursor = Cursors.ScrollNS;
-                }
-                else if (_zoomFactorY == 1)
-                {
-                    Cursor = Cursors.ScrollWE;
                 }
                 else
                 {

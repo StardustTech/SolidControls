@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace SolidControls
@@ -14,8 +15,6 @@ namespace SolidControls
         {
             InitializeComponent();
         }
-
-        private void LineChart_Loaded(object sender, RoutedEventArgs e) { }
 
         public UIElementCollection XSliders { get { return chartKernel.XSliders; } }
         public UIElementCollection YSliders { get { return chartKernel.YSliders; } }
@@ -115,27 +114,29 @@ namespace SolidControls
 
         #region AutoResetHorizontalAxis : bool
 
-        public static readonly DependencyProperty AutoResetHorizontalAxisProperty =
-            LineChartKernel.AutoResetZoomXProperty.AddOwner(typeof(LineChart));
-
         public bool AutoResetHorizontalAxis
         {
             get { return (bool)GetValue(AutoResetHorizontalAxisProperty); }
             set { SetValue(AutoResetHorizontalAxisProperty, value); }
         }
 
+        public static readonly DependencyProperty AutoResetHorizontalAxisProperty =
+            DependencyProperty.Register(nameof(AutoResetHorizontalAxis), typeof(bool), typeof(LineChart),
+                new PropertyMetadata(true, (d, e) => (d as LineChart).chartKernel.AutoResetZoomX = (bool)e.NewValue));
+
         #endregion
 
         #region AutoResetVerticalAxis : bool
-
-        public static readonly DependencyProperty AutoResetVerticalAxisProperty =
-            LineChartKernel.AutoResetZoomYProperty.AddOwner(typeof(LineChart));
 
         public bool AutoResetVerticalAxis
         {
             get { return (bool)GetValue(AutoResetVerticalAxisProperty); }
             set { SetValue(AutoResetVerticalAxisProperty, value); }
         }
+
+        public static readonly DependencyProperty AutoResetVerticalAxisProperty =
+            DependencyProperty.Register(nameof(AutoResetVerticalAxis), typeof(bool), typeof(LineChart),
+                new PropertyMetadata(true, (d, e) => (d as LineChart).chartKernel.AutoResetZoomY = (bool)e.NewValue));
 
         #endregion
 
@@ -144,9 +145,12 @@ namespace SolidControls
         #region MinimumX : double
 
         public static readonly DependencyProperty MinimumXProperty =
-            LineChartKernel.MinXProperty.AddOwner(typeof(LineChart), new PropertyMetadata(0.0,
+            LineChartKernel.MinXProperty.AddOwner(typeof(LineChart), new FrameworkPropertyMetadata(0.0,
                 (d, e) => (d as LineChart).OnMinimumXPropertyChanged((double)e.OldValue, (double)e.NewValue),
-                (d, v) => (d as LineChart).MinimumXPropertyValueCoerce((double)v)));
+                (d, v) => (d as LineChart).MinimumXPropertyValueCoerce((double)v))
+            {
+                BindsTwoWayByDefault = true
+            });
 
         protected virtual void OnMinimumXPropertyChanged(double oldValue, double newValue) { }
 
@@ -198,7 +202,7 @@ namespace SolidControls
         #region MinimumY : double
 
         public static readonly DependencyProperty MinimumYProperty =
-            LineChartKernel.MinYProperty.AddOwner(typeof(LineChart), new PropertyMetadata(0.0,
+            LineChartKernel.MinYProperty.AddOwner(typeof(LineChart), new FrameworkPropertyMetadata(0.0,
                 (d, e) => (d as LineChart).OnMinimumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
                 (d, v) => (d as LineChart).MinimumYPropertyValueCoerce((double)v)));
 
@@ -246,6 +250,38 @@ namespace SolidControls
             get { return (double)GetValue(MaximumYProperty); }
             set { SetValue(MaximumYProperty, value); }
         }
+
+        #endregion
+
+        #region DefaultMinimumY : double
+
+        public double DefaultMinimumY
+        {
+            get { return (double)GetValue(DefaultMinimumYProperty); }
+            set { SetValue(DefaultMinimumYProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultMinimumYProperty =
+            DependencyProperty.Register(nameof(DefaultMinimumY), typeof(double), typeof(LineChart),
+                new PropertyMetadata(Double.NaN, (d, e) => (d as LineChart).OnDefaultMinimumYPropertyChanged((double)e.OldValue, (double)e.NewValue)));
+
+        protected virtual void OnDefaultMinimumYPropertyChanged(double oldValue, double newValue) { }
+
+        #endregion
+
+        #region DefaultMaximumY : double
+
+        public double DefaultMaximumY
+        {
+            get { return (double)GetValue(DefaultMaximumYProperty); }
+            set { SetValue(DefaultMaximumYProperty, value); }
+        }
+
+        public static readonly DependencyProperty DefaultMaximumYProperty =
+            DependencyProperty.Register(nameof(DefaultMaximumY), typeof(double), typeof(LineChart),
+                new PropertyMetadata(Double.NaN, (d, e) => (d as LineChart).OnDefaultMaximumYPropertyChanged((double)e.OldValue, (double)e.NewValue)));
+
+        protected virtual void OnDefaultMaximumYPropertyChanged(double oldValue, double newValue) { }
 
         #endregion
 

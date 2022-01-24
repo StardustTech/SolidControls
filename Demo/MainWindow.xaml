@@ -13,6 +13,8 @@
                             HorizontalAxisTitle="X Axis" VerticalAxisTitle="Y Axis"
                             HorizontalAxisTicksAmount="5" VerticalAxisTicksAmount="5"
                             HorizontalAxisTickStringFormat="{}{0:0}" VerticalAxisTickStringFormat="{}{0:0}"
+                            AutoResetVerticalAxis="False" AutoResetHorizontalAxis="True"
+                            MaximumY="65535" MinimumY="0"
                             Points="{Binding Values, Converter={x:Static controls:ValueCollectionToPointCollectionConverter.Instance}}">
             <controls:LineChart.XSliders>
                 <controls:LineChartRangeSlider Color="Red" Value="30" EndValue="50" />
