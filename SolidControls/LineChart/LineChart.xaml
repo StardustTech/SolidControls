@@ -43,9 +43,9 @@
                     </DrawingBrush>
                 </Border.Background>
 
-                <local:LineChartKernel x:Name="chartKernel" Points="{Binding ElementName=lineChart, Path=Points}"
-                                       MinX="{Binding ElementName=lineChart, Path=MinimumX}"
-                                       MaxX="{Binding ElementName=lineChart, Path=MaximumX}">
+                <local:LineChartKernel x:Name="chartKernel" Points="{Binding ElementName=lineChart, Path=Points}">
+                    <!--MinX="{Binding ElementName=lineChart, Path=MinimumX}"
+                                       MaxX="{Binding ElementName=lineChart, Path=MaximumX}">-->
                     <!--MinY="{Binding ElementName=lineChart, Path=MinimumY}"
                                        MaxY="{Binding ElementName=lineChart, Path=MaximumY}">-->
                     <local:LineChartKernel.Stroke>

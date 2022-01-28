@@ -27,10 +27,15 @@ namespace SolidControls
         private double _zoomFactorX = 1;
         private double _zoomFactorY = 1;
 
-        private double _dataMinX;
-        private double _dataMaxX;
-        private double _dataMinY;
-        private double _dataMaxY;
+        private double _dataMinX = Double.NaN;
+        private double _dataMaxX = Double.NaN;
+        private double _dataMinY = Double.NaN;
+        private double _dataMaxY = Double.NaN;
+
+        private double _defaultMinY = Double.NaN;
+        private double _defaultMaxY = Double.NaN;
+        private double _defaultYZoom = Double.NaN;
+        private double _defaultYCenter = Double.NaN;
 
         private Point _lastMousePosition;
         private LineChartSlider _currentSlider;
@@ -179,12 +184,46 @@ namespace SolidControls
 
         #endregion
 
-        #region DefaultYBorders : double
-
-        public double DefaultYZoom { get; set; }
-        public double DefaultYCenter { get; set; }
-
         #endregion
+
+        #region Public Methods
+
+        public void SetDefaultYBorders(double min, double max)
+        {
+            if (!Double.IsNaN(min) && !Double.IsNaN(max) && min >= max)
+                throw new ArgumentOutOfRangeException($"{nameof(min)}, {nameof(max)}");
+
+            _defaultMinY = min;
+            _defaultMaxY = max;
+
+            if (Double.IsNaN(max) && Double.IsNaN(min))
+            {
+                _defaultYZoom = _defaultYCenter = Double.NaN;
+                InvalidateTransformMatrix();
+                return;
+            }
+
+            if (Double.IsNaN(_dataMinX) || Double.IsNaN(_dataMaxX) || Double.IsNaN(_dataMinY) || Double.IsNaN(_dataMaxY))
+            {
+                InvalidateTransformMatrix();
+                return;
+            }
+
+            if (Double.IsNaN(max))
+            {
+                max = min >= _dataMaxY ? min + 100 : _dataMaxY;
+            }
+            else if (Double.IsNaN(min))
+            {
+                min = max <= _dataMinY ? max - 100 : _dataMinY;
+            }
+
+            double range = max - min;
+            double dataRange = _dataMaxY - _dataMinY;
+
+            _defaultYZoom = dataRange / range;
+            _defaultYCenter = (_dataMinY * max - _dataMaxY * min) / (range - dataRange);
+        }
 
         #endregion
 
@@ -411,7 +450,7 @@ namespace SolidControls
             base.OnMouseRightButtonDown(e);
 
             _zoomFactorX = 1;
-            _zoomFactorY = DefaultYZoom;
+            _zoomFactorY = _defaultYZoom;
 
             InvalidateTransformMatrix(true);
         }
@@ -492,8 +531,16 @@ namespace SolidControls
 
                 if (AutoResetZoomY)
                 {
-                    minY = _dataMinY;
-                    maxY = _dataMaxY;
+                    if (Double.IsNaN(_defaultYZoom) || Double.IsNaN(_defaultYCenter))
+                    {
+                        minY = _dataMinY;
+                        maxY = _dataMaxY;
+                    }
+                    else
+                    {
+                        minY = _defaultYCenter - (_defaultYCenter - _dataMinY) / _defaultYZoom;
+                        maxY = _defaultYCenter + (_dataMaxY - _defaultYCenter) / _defaultYZoom;
+                    }
                 }
 
                 InvalidateTransformMatrix(minX, maxX, minY, maxY);

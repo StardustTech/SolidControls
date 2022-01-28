@@ -142,116 +142,116 @@ namespace SolidControls
 
         #region DataBorders
 
-        #region MinimumX : double
+        //#region MinimumX : double
 
-        public static readonly DependencyProperty MinimumXProperty =
-            LineChartKernel.MinXProperty.AddOwner(typeof(LineChart), new FrameworkPropertyMetadata(0.0,
-                (d, e) => (d as LineChart).OnMinimumXPropertyChanged((double)e.OldValue, (double)e.NewValue),
-                (d, v) => (d as LineChart).MinimumXPropertyValueCoerce((double)v))
-            {
-                BindsTwoWayByDefault = true
-            });
+        //public static readonly DependencyProperty MinimumXProperty =
+        //    LineChartKernel.MinXProperty.AddOwner(typeof(LineChart), new FrameworkPropertyMetadata(0.0,
+        //        (d, e) => (d as LineChart).OnMinimumXPropertyChanged((double)e.OldValue, (double)e.NewValue),
+        //        (d, v) => (d as LineChart).MinimumXPropertyValueCoerce((double)v))
+        //    {
+        //        BindsTwoWayByDefault = true
+        //    });
 
-        protected virtual void OnMinimumXPropertyChanged(double oldValue, double newValue) { }
+        //protected virtual void OnMinimumXPropertyChanged(double oldValue, double newValue) { }
 
-        protected virtual double MinimumXPropertyValueCoerce(double newValue)
-        {
-            if (newValue > MaximumX)
-            {
-                MaximumX = newValue;
-            }
+        //protected virtual double MinimumXPropertyValueCoerce(double newValue)
+        //{
+        //    if (newValue > MaximumX)
+        //    {
+        //        MaximumX = newValue;
+        //    }
 
-            return newValue;
-        }
+        //    return newValue;
+        //}
 
-        public double MinimumX
-        {
-            get { return (double)GetValue(MinimumXProperty); }
-            set { SetValue(MinimumXProperty, value); }
-        }
+        //public double MinimumX
+        //{
+        //    get { return (double)GetValue(MinimumXProperty); }
+        //    set { SetValue(MinimumXProperty, value); }
+        //}
 
-        #endregion
+        //#endregion
 
-        #region MaximumX : double
+        //#region MaximumX : double
 
-        public static readonly DependencyProperty MaximumXProperty =
-            LineChartKernel.MaxXProperty.AddOwner(typeof(LineChart), new PropertyMetadata(100.0,
-                (d, e) => (d as LineChart).OnMaximumXPropertyChanged((double)e.OldValue, (double)e.NewValue),
-                (d, v) => (d as LineChart).MaximumXPropertyValueCoerce((double)v)));
+        //public static readonly DependencyProperty MaximumXProperty =
+        //    LineChartKernel.MaxXProperty.AddOwner(typeof(LineChart), new PropertyMetadata(100.0,
+        //        (d, e) => (d as LineChart).OnMaximumXPropertyChanged((double)e.OldValue, (double)e.NewValue),
+        //        (d, v) => (d as LineChart).MaximumXPropertyValueCoerce((double)v)));
 
-        protected virtual void OnMaximumXPropertyChanged(double oldValue, double newValue) { }
+        //protected virtual void OnMaximumXPropertyChanged(double oldValue, double newValue) { }
 
-        protected virtual double MaximumXPropertyValueCoerce(double newValue)
-        {
-            if (newValue < MinimumX)
-            {
-                MinimumX = newValue;
-            }
+        //protected virtual double MaximumXPropertyValueCoerce(double newValue)
+        //{
+        //    if (newValue < MinimumX)
+        //    {
+        //        MinimumX = newValue;
+        //    }
 
-            return newValue;
-        }
+        //    return newValue;
+        //}
 
-        public double MaximumX
-        {
-            get { return (double)GetValue(MaximumXProperty); }
-            set { SetValue(MaximumXProperty, value); }
-        }
+        //public double MaximumX
+        //{
+        //    get { return (double)GetValue(MaximumXProperty); }
+        //    set { SetValue(MaximumXProperty, value); }
+        //}
 
-        #endregion
+        //#endregion
 
-        #region MinimumY : double
+        //#region MinimumY : double
 
-        public static readonly DependencyProperty MinimumYProperty =
-            LineChartKernel.MinYProperty.AddOwner(typeof(LineChart), new FrameworkPropertyMetadata(0.0,
-                (d, e) => (d as LineChart).OnMinimumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
-                (d, v) => (d as LineChart).MinimumYPropertyValueCoerce((double)v)));
+        //public static readonly DependencyProperty MinimumYProperty =
+        //    LineChartKernel.MinYProperty.AddOwner(typeof(LineChart), new FrameworkPropertyMetadata(0.0,
+        //        (d, e) => (d as LineChart).OnMinimumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
+        //        (d, v) => (d as LineChart).MinimumYPropertyValueCoerce((double)v)));
 
-        protected virtual void OnMinimumYPropertyChanged(double oldValue, double newValue) { }
+        //protected virtual void OnMinimumYPropertyChanged(double oldValue, double newValue) { }
 
-        protected virtual double MinimumYPropertyValueCoerce(double newValue)
-        {
-            if (newValue > MaximumY)
-            {
-                MaximumY = newValue;
-            }
+        //protected virtual double MinimumYPropertyValueCoerce(double newValue)
+        //{
+        //    if (newValue > MaximumY)
+        //    {
+        //        MaximumY = newValue;
+        //    }
 
-            return newValue;
-        }
+        //    return newValue;
+        //}
 
-        public double MinimumY
-        {
-            get { return (double)GetValue(MinimumYProperty); }
-            set { SetValue(MinimumYProperty, value); }
-        }
+        //public double MinimumY
+        //{
+        //    get { return (double)GetValue(MinimumYProperty); }
+        //    set { SetValue(MinimumYProperty, value); }
+        //}
 
-        #endregion
+        //#endregion
 
-        #region MaximumY : double
+        //#region MaximumY : double
 
-        public static readonly DependencyProperty MaximumYProperty =
-            LineChartKernel.MaxYProperty.AddOwner(typeof(LineChart), new PropertyMetadata(100.0,
-                (d, e) => (d as LineChart).OnMaximumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
-                (d, v) => (d as LineChart).MaximumYPropertyValueCoerce((double)v)));
+        //public static readonly DependencyProperty MaximumYProperty =
+        //    LineChartKernel.MaxYProperty.AddOwner(typeof(LineChart), new PropertyMetadata(100.0,
+        //        (d, e) => (d as LineChart).OnMaximumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
+        //        (d, v) => (d as LineChart).MaximumYPropertyValueCoerce((double)v)));
 
-        protected virtual void OnMaximumYPropertyChanged(double oldValue, double newValue) { }
+        //protected virtual void OnMaximumYPropertyChanged(double oldValue, double newValue) { }
 
-        protected virtual double MaximumYPropertyValueCoerce(double newValue)
-        {
-            if (newValue < MinimumY)
-            {
-                MinimumY = newValue;
-            }
+        //protected virtual double MaximumYPropertyValueCoerce(double newValue)
+        //{
+        //    if (newValue < MinimumY)
+        //    {
+        //        MinimumY = newValue;
+        //    }
 
-            return newValue;
-        }
+        //    return newValue;
+        //}
 
-        public double MaximumY
-        {
-            get { return (double)GetValue(MaximumYProperty); }
-            set { SetValue(MaximumYProperty, value); }
-        }
+        //public double MaximumY
+        //{
+        //    get { return (double)GetValue(MaximumYProperty); }
+        //    set { SetValue(MaximumYProperty, value); }
+        //}
 
-        #endregion
+        //#endregion
 
         #region DefaultMinimumY : double
 
@@ -263,9 +263,21 @@ namespace SolidControls
 
         public static readonly DependencyProperty DefaultMinimumYProperty =
             DependencyProperty.Register(nameof(DefaultMinimumY), typeof(double), typeof(LineChart),
-                new PropertyMetadata(Double.NaN, (d, e) => (d as LineChart).OnDefaultMinimumYPropertyChanged((double)e.OldValue, (double)e.NewValue)));
+                new PropertyMetadata(Double.NaN,
+                    (d, e) => (d as LineChart).OnDefaultMinimumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
+                    (d, v) => (d as LineChart).DefaultMinimumYPropertyValueCoerce((double)v)));
 
-        protected virtual void OnDefaultMinimumYPropertyChanged(double oldValue, double newValue) { }
+        protected virtual void OnDefaultMinimumYPropertyChanged(double oldValue, double newValue)
+        {
+            chartKernel.SetDefaultYBorders(newValue, DefaultMaximumY);
+        }
+
+        protected virtual double DefaultMinimumYPropertyValueCoerce(double newValue)
+        {
+            return Double.IsNaN(DefaultMaximumY) || newValue < DefaultMaximumY
+                ? newValue
+                : throw new ArgumentOutOfRangeException(nameof(DefaultMinimumY));
+        }
 
         #endregion
 
@@ -279,9 +291,21 @@ namespace SolidControls
 
         public static readonly DependencyProperty DefaultMaximumYProperty =
             DependencyProperty.Register(nameof(DefaultMaximumY), typeof(double), typeof(LineChart),
-                new PropertyMetadata(Double.NaN, (d, e) => (d as LineChart).OnDefaultMaximumYPropertyChanged((double)e.OldValue, (double)e.NewValue)));
+                new PropertyMetadata(Double.NaN,
+                    (d, e) => (d as LineChart).OnDefaultMaximumYPropertyChanged((double)e.OldValue, (double)e.NewValue),
+                    (d, v) => (d as LineChart).DefaultMaximumYPropertyValueCoerce((double)v)));
 
-        protected virtual void OnDefaultMaximumYPropertyChanged(double oldValue, double newValue) { }
+        protected virtual void OnDefaultMaximumYPropertyChanged(double oldValue, double newValue)
+        {
+            chartKernel.SetDefaultYBorders(DefaultMinimumY, newValue);
+        }
+
+        protected virtual double DefaultMaximumYPropertyValueCoerce(double newValue)
+        {
+            return Double.IsNaN(DefaultMinimumY) || newValue > DefaultMinimumY
+                ? newValue
+                : throw new ArgumentOutOfRangeException(nameof(DefaultMaximumY));
+        }
 
         #endregion
 
