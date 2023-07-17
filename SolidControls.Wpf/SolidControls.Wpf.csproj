@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net452</TargetFramework>
+		<RootNamespace>Stardust.OpenSource.SolidControls.Wpf</RootNamespace>
+		<UseWPF>true</UseWPF>
+		<BaseOutputPath>..\bin\</BaseOutputPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SolidControls.Core\SolidControls.Core.csproj" />
+	</ItemGroup>
+
+</Project>
