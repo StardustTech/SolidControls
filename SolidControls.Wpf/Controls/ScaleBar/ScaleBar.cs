@@ -91,7 +91,11 @@ namespace Stardust.OpenSource.SolidControls.Wpf
 
             var drawTickTextAction = new Action<double, Func<double, double, double>, Func<double, double, double>>((tickPosition, getX, getY) => {
                 string tickText = String.Format(TickStringFormat, tickPosition);
+#if NETCOREAPP
+                var text = new FormattedText(tickText, culture, FlowDirection, typeface, fontSize, Fill, VisualTreeHelper.GetDpi(this).PixelsPerDip);
+#else
                 var text = new FormattedText(tickText, culture, FlowDirection, typeface, fontSize, Fill);
+#endif
                 double x = getX(tickPosition, text.Width);
                 double y = getY(tickPosition, text.Height);
 
