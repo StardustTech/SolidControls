@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<RootNamespace>Stardust.OpenSource.SolidControls.Demo.WpfApp</RootNamespace>
 		<Nullable>enable</Nullable>
 		<UseWPF>true</UseWPF>

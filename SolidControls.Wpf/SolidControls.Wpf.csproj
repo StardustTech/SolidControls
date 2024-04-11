@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net452;net7.0-windows</TargetFrameworks>
+		<TargetFrameworks>net452;net8.0-windows</TargetFrameworks>
 		<RootNamespace>Stardust.OpenSource.SolidControls.Wpf</RootNamespace>
 		<UseWPF>true</UseWPF>
 		<BaseOutputPath>..\bin\</BaseOutputPath>
