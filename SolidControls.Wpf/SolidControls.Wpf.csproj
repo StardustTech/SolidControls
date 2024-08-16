@@ -5,7 +5,7 @@
 		<RootNamespace>Stardust.OpenSource.SolidControls.Wpf</RootNamespace>
 		<UseWPF>true</UseWPF>
 		<BaseOutputPath>..\bin\</BaseOutputPath>
-		<VersionPrefix>1.1.0</VersionPrefix>
+		<VersionPrefix>1.1.1</VersionPrefix>
 	</PropertyGroup>
 
 	<ItemGroup>
